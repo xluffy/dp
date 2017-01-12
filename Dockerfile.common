@@ -2,6 +2,7 @@
 # Oracle JDK 1.8 Dockerfile
 # Ref: http://blog.takipi.com/lean-mean-java-virtual-machine-making-your-docker-7x-lighter-with-alpine-linux
 # Init: dump-init (Yelp)
+#
 
 FROM ubuntu:16.04
 MAINTAINER Quang V. Nguyen <xquang.foss@gmail.com>
@@ -12,7 +13,7 @@ ENV BUILD_VERSION b16
 RUN \
     sed -i "s/archive.ubuntu.com/mirror-fpt-telecom.fpt.net/g" /etc/apt/sources.list && \
     apt-get update && \
-    apt-get install -y tmux curl git htop vim wget ncdu && \
+    apt-get install -y --no-install-recommends tmux curl git htop vim wget ncdu && \
     rm -fv /var/cache/apt/*.bin && \
     rm -fv /var/cache/apt/archives/*.* && \
     rm -fv /var/lib/apt/lists/*.* && \
