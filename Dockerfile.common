@@ -7,6 +7,9 @@
 FROM ubuntu:16.04
 MAINTAINER Quang V. Nguyen <xquang.foss@gmail.com>
 
+LABEL NAME="JDK Images"
+LABEL VERSION="1.0"
+
 ENV JAVA_VERSION 8u51
 ENV BUILD_VERSION b16
 
