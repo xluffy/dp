@@ -25,7 +25,7 @@ RUN \
     rm -fv /var/cache/apt/*.bin && \
     rm -fv /var/cache/apt/archives/*.* && \
     rm -fv /var/lib/apt/lists/*.* && \
-    apt-get autoclean  &&\
+    apt-get autoclean  && \
     mv /zserver/jdk1.8.0_51 /zserver/jdk && \
 	  rm -rf /zserver/jdk/*src.zip \
            /zserver/jdk/lib/missioncontrol \
@@ -46,7 +46,7 @@ RUN \
            /zserver/jdk/jre/lib/amd64/libglass.so \
            /zserver/jdk/jre/lib/amd64/libgstreamer-lite.so \
            /zserver/jdk/jre/lib/amd64/libjavafx*.so \
-           /zserver/jdk/jre/lib/amd64/libjfx*.so \
+           /zserver/jdk/jre/lib/amd64/libjfx*.so
 
 WORKDIR /zsrc
 
