@@ -1,32 +1,31 @@
 #
 # Oracle JDK 1.8 Dockerfile
 # Ref: http://blog.takipi.com/lean-mean-java-virtual-machine-making-your-docker-7x-lighter-with-alpine-linux
-# Init: dump-init (Yelp)
+# Init: dump-init (Yelp) or Supervisord
 #
 
 FROM ubuntu:16.04
 MAINTAINER Quang V. Nguyen <xquang.foss@gmail.com>
 
-LABEL NAME="JDK Images"
+LABEL NAME="IMAGES JDK"
 LABEL VERSION="1.0"
 
 ENV JAVA_VERSION 8u51
 ENV BUILD_VERSION b16
 
+ENV LANG C.UTF-8
+
+ADD src/jdk-8u51-linux-x64.tar.gz /zserver/
+
 RUN \
-    sed -i "s/archive.ubuntu.com/mirror-fpt-telecom.fpt.net/g" /etc/apt/sources.list && \
+    echo "deb http://mirror-fpt-telecom.fpt.net/ubuntu/ xenial main universe" > /etc/apt/sources.list && \
     apt-get update && \
+    RUNLEVEL=1 DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends tmux curl git htop vim wget ncdu && \
     rm -fv /var/cache/apt/*.bin && \
     rm -fv /var/cache/apt/archives/*.* && \
     rm -fv /var/lib/apt/lists/*.* && \
-    apt-get autoclean
-
-RUN \
-    mkdir -p /zserver/bin && \
-    curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" \
-    "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/jdk-$JAVA_VERSION-linux-x64.tar.gz" \
-      | tar -xzf - -C /zserver && \
+    apt-get autoclean  &&\
     mv /zserver/jdk1.8.0_51 /zserver/jdk && \
 	  rm -rf /zserver/jdk/*src.zip \
            /zserver/jdk/lib/missioncontrol \
@@ -47,10 +46,7 @@ RUN \
            /zserver/jdk/jre/lib/amd64/libglass.so \
            /zserver/jdk/jre/lib/amd64/libgstreamer-lite.so \
            /zserver/jdk/jre/lib/amd64/libjavafx*.so \
-           /zserver/jdk/jre/lib/amd64/libjfx*.so && \
-    wget -O /zserver/bin/dumb-init \
-    "https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64" && \
-    chmod +x /zserver/bin/dumb-init
+           /zserver/jdk/jre/lib/amd64/libjfx*.so \
 
 WORKDIR /zsrc
 
