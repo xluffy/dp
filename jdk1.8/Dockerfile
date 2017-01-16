@@ -27,7 +27,7 @@ RUN \
     rm -fv /var/lib/apt/lists/*.* && \
     apt-get autoclean  && \
     mv /zserver/jdk1.8.0_51 /zserver/jdk && \
-	  rm -rf /zserver/jdk/*src.zip \
+    rm -rf /zserver/jdk/*src.zip \
            /zserver/jdk/lib/missioncontrol \
            /zserver/jdk/lib/visualvm \
            /zserver/jdk/lib/*javafx* \
