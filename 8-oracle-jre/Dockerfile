@@ -24,7 +24,7 @@ RUN \
     rm -fv /var/cache/apt/archives/*.* && \
     rm -fv /var/lib/apt/lists/*.* && \
     apt-get autoclean  && \
-		mkdir -pv /zserver && curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" \
+    mkdir -pv /zserver && curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" \
     "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/jre-$JAVA_VERSION-linux-x64.tar.gz" \
       | tar -xzf - -C /zserver && \
     mv /zserver/jre1.8.0_51 /zserver/jre && \

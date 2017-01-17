@@ -6,6 +6,8 @@ services:
 before_install:
   - docker pull ubuntu:16.04
   - docker build -t xluffy/jre:1.8 -f 8-oracle-jre/Dockerfile .
+  - docker build -t xluffy/jdk:1.8 -f 8-oracle-jdk/Dockerfile .
 
 script:
   - docker run --name jre xluffy/jre:1.8
+  - docker run --name jdk xluffy/jdk:1.8
