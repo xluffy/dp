@@ -1,7 +1,7 @@
 Docker
 ======
 
-- masteri: don't test with travis
+- master: don't test with travis
 - dl: [![Build Status](https://travis-ci.org/xluffy/dp.svg?branch=dl)](https://travis-ci.org/xluffy/dp)
 
 ## 1. Build JDK Image from Dockerfile
