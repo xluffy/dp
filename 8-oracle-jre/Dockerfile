@@ -15,8 +15,6 @@ ENV BUILD_VERSION b16
 
 ENV LANG C.UTF-8
 
-ADD src/jre-8u51-linux-x64.tar.gz /zserver/
-
 RUN \
     echo "deb http://mirror-fpt-telecom.fpt.net/ubuntu/ xenial main universe" > /etc/apt/sources.list && \
     apt-get update && \
@@ -26,27 +24,34 @@ RUN \
     rm -fv /var/cache/apt/archives/*.* && \
     rm -fv /var/lib/apt/lists/*.* && \
     apt-get autoclean  && \
-    mv /zserver/jre1.8.0_51 /zserver/jre && \
-    rm -fr /zserver/jre/lib/plugin.jar \
-           /zserver/jre/lib/ext/jfxrt.jar \
-           /zserver/jre/bin/javaws \
-           /zserver/jre/lib/javaws.jar \
-           /zserver/jre/lib/desktop \
-           /zserver/jre/plugin \
-           /zserver/jre/lib/deploy* \
-           /zserver/jre/lib/*javafx* \
-           /zserver/jre/lib/*jfx* \
-           /zserver/jre/lib/amd64/libdecora_sse.so \
-           /zserver/jre/lib/amd64/libprism_*.so \
-           /zserver/jre/lib/amd64/libfxplugins.so \
-           /zserver/jre/lib/amd64/libglass.so \
-           /zserver/jre/lib/amd64/libgstreamer-lite.so \
-           /zserver/jre/lib/amd64/libjavafx*.so \
-           /zserver/jre/lib/amd64/libjfx*.so
+		curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" \
+    "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/jdk-$JAVA_VERSION-linux-x64.tar.gz" \
+      | tar -xzf - -C /zserver && \
+    mv /zserver/jdk1.8.0_51 /zserver/jdk && \
+	  rm -rf /zserver/jdk/*src.zip \
+           /zserver/jdk/lib/missioncontrol \
+           /zserver/jdk/lib/visualvm \
+           /zserver/jdk/lib/*javafx* \
+           /zserver/jdk/jre/lib/plugin.jar \
+           /zserver/jdk/jre/lib/ext/jfxrt.jar \
+           /zserver/jdk/jre/bin/javaws \
+           /zserver/jdk/jre/lib/javaws.jar \
+           /zserver/jdk/jre/lib/desktop \
+           /zserver/jdk/jre/plugin \
+           /zserver/jdk/jre/lib/deploy* \
+           /zserver/jdk/jre/lib/*javafx* \
+           /zserver/jdk/jre/lib/*jfx* \
+           /zserver/jdk/jre/lib/amd64/libdecora_sse.so \
+           /zserver/jdk/jre/lib/amd64/libprism_*.so \
+           /zserver/jdk/jre/lib/amd64/libfxplugins.so \
+           /zserver/jdk/jre/lib/amd64/libglass.so \
+           /zserver/jdk/jre/lib/amd64/libgstreamer-lite.so \
+           /zserver/jdk/jre/lib/amd64/libjavafx*.so \
+           /zserver/jdk/jre/lib/amd64/libjfx*.so
 
 WORKDIR /zsrc
 
 ENV JAVA_HOME /zserver/jre
 ENV PATH ${PATH}:/zserver/jre/bin:/zserver/bin
 
-CMD ["/bin/bash"]
+CMD ["java", "-version"]
