@@ -49,4 +49,4 @@ WORKDIR /zsrc
 ENV JAVA_HOME /zserver/jre
 ENV PATH ${PATH}:/zserver/jre/bin:/zserver/bin
 
-CMD ["/bin/bash"]
+CMD ["java", "-version"]

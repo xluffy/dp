@@ -3,6 +3,9 @@ Docker
 
 ## 1. Build JDK Image from Dockerfile
 
+- master: don't test with travis
+- dl: [![Build Status](https://travis-ci.org/xluffy/dp.svg?branch=dl)](https://travis-ci.org/xluffy/dp)
+
 Download jdk source
 
 ```
