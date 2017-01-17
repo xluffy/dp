@@ -24,30 +24,30 @@ RUN \
     rm -fv /var/cache/apt/archives/*.* && \
     rm -fv /var/lib/apt/lists/*.* && \
     apt-get autoclean  && \
-		mkdir -p /zserver && curl -jksSLHSLH "Cookie: oraclelicense=accept-securebackup-cookie" \
+    mkdir -p /zserver && curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" \
       "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/jdk-$JAVA_VERSION-linux-x64.tar.gz" \
       | tar -xzf - -C /zserver && \
-    mv /zserver/jdk1.8.0_51 /zserver/jdk && \
-	  rm -rf /zserver/jdk/*src.zip \
-           /zserver/jdk/lib/missioncontrol \
-           /zserver/jdk/lib/visualvm \
-           /zserver/jdk/lib/*javafx* \
-           /zserver/jdk/jre/lib/plugin.jar \
-           /zserver/jdk/jre/lib/ext/jfxrt.jar \
-           /zserver/jdk/jre/bin/javaws \
-           /zserver/jdk/jre/lib/javaws.jar \
-           /zserver/jdk/jre/lib/desktop \
-           /zserver/jdk/jre/plugin \
-           /zserver/jdk/jre/lib/deploy* \
-           /zserver/jdk/jre/lib/*javafx* \
-           /zserver/jdk/jre/lib/*jfx* \
-           /zserver/jdk/jre/lib/amd64/libdecora_sse.so \
-           /zserver/jdk/jre/lib/amd64/libprism_*.so \
-           /zserver/jdk/jre/lib/amd64/libfxplugins.so \
-           /zserver/jdk/jre/lib/amd64/libglass.so \
-           /zserver/jdk/jre/lib/amd64/libgstreamer-lite.so \
-           /zserver/jdk/jre/lib/amd64/libjavafx*.so \
-           /zserver/jdk/jre/lib/amd64/libjfx*.so 
+    mv /zserver/jdk1.8.0_51 /zserver/jdk #&& \
+#    rm -rf /zserver/jdk/*src.zip \
+#           /zserver/jdk/lib/missioncontrol \
+#           /zserver/jdk/lib/visualvm \
+#           /zserver/jdk/lib/*javafx* \
+#           /zserver/jdk/jre/lib/plugin.jar \
+#           /zserver/jdk/jre/lib/ext/jfxrt.jar \
+#           /zserver/jdk/jre/bin/javaws \
+#           /zserver/jdk/jre/lib/javaws.jar \
+#           /zserver/jdk/jre/lib/desktop \
+#           /zserver/jdk/jre/plugin \
+#           /zserver/jdk/jre/lib/deploy* \
+#           /zserver/jdk/jre/lib/*javafx* \
+#           /zserver/jdk/jre/lib/*jfx* \
+#           /zserver/jdk/jre/lib/amd64/libdecora_sse.so \
+#           /zserver/jdk/jre/lib/amd64/libprism_*.so \
+#           /zserver/jdk/jre/lib/amd64/libfxplugins.so \
+#           /zserver/jdk/jre/lib/amd64/libglass.so \
+#           /zserver/jdk/jre/lib/amd64/libgstreamer-lite.so \
+#           /zserver/jdk/jre/lib/amd64/libjavafx*.so \
+#           /zserver/jdk/jre/lib/amd64/libjfx*.so
 
 WORKDIR /zsrc
 
