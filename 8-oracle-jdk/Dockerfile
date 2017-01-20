@@ -46,7 +46,10 @@ RUN \
            /zserver/jdk/jre/lib/amd64/libglass.so \
            /zserver/jdk/jre/lib/amd64/libgstreamer-lite.so \
            /zserver/jdk/jre/lib/amd64/libjavafx*.so \
-           /zserver/jdk/jre/lib/amd64/libjfx*.so
+           /zserver/jdk/jre/lib/amd64/libjfx*.so && \
+    wget -O /usr/local/bin/dumb-init \
+      "https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64" && \
+    chmod +x /usr/local/bin/dumb-init
 
 WORKDIR /zsrc
 
