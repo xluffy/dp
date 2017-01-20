@@ -33,6 +33,6 @@ curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" \
 ## 2. Result
 
 ```
-xluffy/jre      1.8      4b9299e0cf64        39 minutes ago      517.6 MB
-xluffy/jdk      1.8      c431ae95af3b        16 hours ago        735.4 MB
+xluffy/jdk     1.8      24d9252eefed        2 days ago          576.9 MB
+xluffy/jre     1.8      436bf6fb1682        2 days ago          346.6 MB
 ```

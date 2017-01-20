@@ -1,0 +1,55 @@
+cluster.name: es_docker
+discovery.zen.ping.multicast: false
+network.host: 0.0.0.0
+
+index.number_of_shards: 1
+index.number_of_replicas: 0
+
+index.search.slowlog.threshold.query.warn: 10s
+index.search.slowlog.threshold.query.info: 5s
+index.search.slowlog.threshold.query.debug: 2s
+index.search.slowlog.threshold.query.trace: 500ms
+
+index.search.slowlog.threshold.fetch.warn: 1s
+index.search.slowlog.threshold.fetch.info: 800ms
+index.search.slowlog.threshold.fetch.debug: 500ms
+index.search.slowlog.threshold.fetch.trace: 200ms
+
+index.indexing.slowlog.threshold.index.warn: 10s
+index.indexing.slowlog.threshold.index.info: 5s
+index.indexing.slowlog.threshold.index.debug: 2s
+index.indexing.slowlog.threshold.index.trace: 500ms
+
+monitor.jvm.gc.ConcurrentMarkSweep.info: 5s
+index.store.type: mmapfs
+
+# Search pool
+threadpool.search.type: fixed
+threadpool.search.size: 24
+threadpool.search.queue_size: 100
+
+# Bulk pool
+threadpool.bulk.type: fixed
+threadpool.bulk.size: 60
+threadpool.bulk.queue_size: 300
+
+# Index pool
+threadpool.index.type: fixed
+threadpool.index.size: 24
+threadpool.index.queue_size: 100
+
+# Indices settings
+indices.memory.index_buffer_size: 30%
+indices.memory.min_shard_index_buffer_size: 12mb
+indices.memory.min_index_buffer_size: 96mb
+
+# Cache Sizes
+index.cache.field.type: soft
+indices.fielddata.cache.size: 15%
+indices.fielddata.cache.expire: 12h
+indices.cache.filter.size: 15%
+indices.cache.filter.expire: 12h
+
+# Indexing Settings for Writes
+index.refresh_interval: 5s
+index.translog.flush_threshold_ops: 50000
