@@ -21,7 +21,7 @@ RUN \
     echo "deb http://mirror-fpt-telecom.fpt.net/ubuntu/ xenial main universe" > /etc/apt/sources.list && \
     apt-get update && \
     RUNLEVEL=1 DEBIAN_FRONTEND=noninteractive \
-    apt-get install -y --no-install-recommends tmux curl git htop vim wget ncdu && \
+    apt-get install -y --no-install-recommends curl git vim wget xz-utils && \
     rm -fv /var/cache/apt/*.bin && \
     rm -fv /var/cache/apt/archives/*.* && \
     rm -fv /var/lib/apt/lists/*.* && \
