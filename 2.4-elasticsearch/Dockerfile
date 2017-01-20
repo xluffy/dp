@@ -13,7 +13,7 @@ ENV LANG C.UTF-8
 
 RUN \
     groupadd -r -g 1000 elasticsearch && useradd elasticsearch -r -u 1000 -g 1000 && \
-		wget -qO - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add - && \
+    wget -qO - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add - && \
     echo 'deb http://packages.elasticsearch.org/elasticsearch/2.x/debian stable main' \
       | tee /etc/apt/sources.list.d/elasticsearch.list && \
     apt-get update && \
