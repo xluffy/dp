@@ -19,13 +19,13 @@ RUN \
     echo "deb http://mirror-fpt-telecom.fpt.net/ubuntu/ xenial main universe" > /etc/apt/sources.list && \
     apt-get update && \
     RUNLEVEL=1 DEBIAN_FRONTEND=noninteractive \
-    apt-get install -y --no-install-recommends curl git vim wget xz-utils && \
+    apt-get install -y --no-install-recommends ca-certificates curl git vim wget xz-utils && \
     rm -fv /var/cache/apt/*.bin && \
     rm -fv /var/cache/apt/archives/*.* && \
     rm -fv /var/lib/apt/lists/*.* && \
     apt-get autoclean  && \
     mkdir -pv /zserver && curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" \
-    "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/jre-$JAVA_VERSION-linux-x64.tar.gz" \
+      "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/jre-$JAVA_VERSION-linux-x64.tar.gz" \
       | tar -xzf - -C /zserver && \
     mv /zserver/jre1.8.0_51 /zserver/jre && \
 	  rm -rf /zserver/jre/lib/plugin.jar \
@@ -43,7 +43,10 @@ RUN \
            /zserver/jre/lib/amd64/libglass.so \
            /zserver/jre/lib/amd64/libgstreamer-lite.so \
            /zserver/jre/lib/amd64/libjavafx*.so \
-           /zserver/jre/lib/amd64/libjfx*.so
+           /zserver/jre/lib/amd64/libjfx*.so && \
+    wget -O /usr/local/bin/dumb-init \
+      "https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64" && \
+    chmod +x /usr/local/bin/dumb-init
 
 WORKDIR /zsrc
 
