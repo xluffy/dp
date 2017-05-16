@@ -4,7 +4,7 @@
 # Init: dump-init (Yelp) or Supervisord
 #
 
-FROM ubuntu:16.04
+FROM xluffy/ubuntu:16.04
 MAINTAINER Quang V. Nguyen <xquang.foss@gmail.com>
 
 LABEL NAME="IMAGES JRE"
@@ -22,7 +22,7 @@ RUN \
     sed -i 's/archive.ubuntu.com/mirrors.vhost.vn/g' /etc/apt/sources.list && \
     apt-get update && \
     RUNLEVEL=1 DEBIAN_FRONTEND=noninteractive \
-    apt-get install -y --no-install-recommends curl git vim wget xz-utils && \
+    apt-get install -y --no-install-recommends apt-utils curl git vim wget xz-utils && \
     rm -fv /var/cache/apt/*.bin && \
     rm -fv /var/cache/apt/archives/*.* && \
     rm -fv /var/lib/apt/lists/*.* && \
@@ -43,12 +43,9 @@ RUN \
            /zserver/jre/lib/amd64/libglass.so \
            /zserver/jre/lib/amd64/libgstreamer-lite.so \
            /zserver/jre/lib/amd64/libjavafx*.so \
-           /zserver/jre/lib/amd64/libjfx*.so && \
-    wget -O /usr/local/bin/dumb-init \
-      "https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64" && \
-    chmod +x /usr/local/bin/dumb-init
+           /zserver/jre/lib/amd64/libjfx*.so
 
-WORKDIR /zsrc
+WORKDIR /srv/www
 
 ENV JAVA_HOME /zserver/jre
 ENV PATH ${PATH}:/zserver/jre/bin:/zserver/bin
