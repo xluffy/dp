@@ -32,5 +32,3 @@ RUN \
     mkdir -pv /var/log/supervisor /etc/supervisor/conf.d
 
 ADD ./etc/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
-
-CMD ["/usr/local/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
