@@ -11,6 +11,7 @@ FROM xluffy/ubuntu:16.04
 MAINTAINER Quang V. Nguyen <xquang.foss@gmail.com>
 
 ENV RUBY_VERSION 2.3.3
+ENV BUNDLER_VERSION 1.15.1
 
 RUN \
     apt-get update && \
@@ -28,15 +29,20 @@ RUN \
       libffi-dev \
       libgdbm3 \
       libgdbm-dev \
+      libncurses-dev \
+      libreadline-dev \
+      libxml2-dev \
+      libxslt-dev \
       bzip2 && \
     echo "gem: --no-document" >> /usr/local/etc/gemrc && \
     mkdir -pv /ops/src && cd /ops/src && git clone https://github.com/rbenv/ruby-build && \
     cd /ops/src/ruby-build && ./install.sh && \
     rm -rf /ops/src/ruby-build && \
-    cd / && /usr/local/bin/ruby-build $RUBY_VERSION /usr/local && \
+    cd / && /usr/local/bin/ruby-build "$RUBY_VERSION" /usr/local && \
     gem update --system && \
-    gem install bundler && \
-    apt-get purge -y \ 
+    gem install bundler --version "$BUNDLER_VERSION" && \
+    apt-get purge -y --auto-remove \
+      gcc \
       autoconf \
       bison \
       build-essential \
@@ -48,4 +54,18 @@ RUN \
       libffi-dev \
       libgdbm3 \
       libgdbm-dev \
-      bzip2
+      libncurses-dev \
+      libreadline-dev \
+      libxml2-dev \
+      libxslt-dev \
+      bzip2 && \
+    rm -fv /var/cache/apt/*.bin && \
+    rm -fv /var/cache/apt/archives/*.* && \
+    rm -fv /var/lib/apt/lists/*.* && \
+    apt-get autoclean && \
+   	find /usr/local -depth \
+		\( \
+			\( -type d -a -name test -o -name tests \) \
+			-o \
+			\( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
+		\) -exec rm -rf '{}' +;
