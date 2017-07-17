@@ -29,11 +29,11 @@ RUN \
     apt-get autoclean && \
     pip2.7 install supervisor && \
     mkdir -pv /var/log/supervisor /etc/supervisor/conf.d && \
-   	find /usr/local -depth \
-		\( \
-			\( -type d -a -name test -o -name tests \) \
-			-o \
-			\( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
-		\) -exec rm -rf '{}' +;
+    find /usr/local -depth \
+    \( \
+      \( -type d -a -name test -o -name tests \) \
+      -o \
+      \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
+    \) -exec rm -rf '{}' +;
 
 ADD ./etc/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
