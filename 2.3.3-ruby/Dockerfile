@@ -63,9 +63,9 @@ RUN \
     rm -fv /var/cache/apt/archives/*.* && \
     rm -fv /var/lib/apt/lists/*.* && \
     apt-get autoclean && \
-   	find /usr/local -depth \
-		\( \
-			\( -type d -a -name test -o -name tests \) \
-			-o \
-			\( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
-		\) -exec rm -rf '{}' +;
+    find /usr/local -depth \
+    \( \
+      \( -type d -a -name test -o -name tests \) \
+      -o \
+      \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
+    \) -exec rm -rf '{}' +;
