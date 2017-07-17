@@ -2,7 +2,7 @@
 # Ubuntu 16.04
 # Init: dump-init (Yelp) or Supervisord
 # Dependencies: python2.7 librarys
-# Build: docker build -t xluffy/ubuntu:16.04 -f base/Dockerfile .
+# Build: docker build -t xluffy/ubuntu:16.04 -f 16.04-ubuntu/Dockerfile .
 #
 
 FROM ubuntu:16.04
