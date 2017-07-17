@@ -4,7 +4,7 @@
 # Init: dump-init (Yelp) or Supervisord
 # Dependencies: python2.7 librarys
 # Build: cd 2.3.3-ruby && docker build -t xluffy/ruby:2.3.3 -f Dockerfile .
-# TODO: Optimize size image
+# TODO: Optimize size image + rails + puma
 #
 
 FROM xluffy/ubuntu:16.04
