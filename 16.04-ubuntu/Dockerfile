@@ -14,11 +14,8 @@ RUN \
     apt-get update && \
     RUNLEVEL=1 DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \
-      apt-utils \
       curl \
-      git \
       vim \
-      wget \
       python \
       python-pip \
       python-setuptools && \
