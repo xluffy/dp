@@ -1,7 +1,7 @@
 #
-# Ruby 2.3.3
+# Ruby 2.3.3 + Rails 4.2.0
 # Inherit: xluffy/ubuntu:16.04
-# Init: dump-init (Yelp) or Supervisord
+# Init: Supervisord
 # Dependencies: python2.7 librarys
 # Build: cd 2.3.3-ruby && docker build -t xluffy/ruby:2.3.3 -f Dockerfile .
 # TODO: Optimize size image + rails + puma
